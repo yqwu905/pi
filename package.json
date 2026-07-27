@@ -1,0 +1,30 @@
+{
+  "name": "@yqwu905/pi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal Pi extension bundle with pinned dependencies.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yqwu905/pi.git"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-coding-agent",
+    "pi-extension"
+  ],
+  "dependencies": {
+    "@juicesharp/rpiv-ask-user-question": "2.1.0",
+    "@juicesharp/rpiv-todo": "2.1.0",
+    "@tintinweb/pi-subagents": "0.14.3",
+    "pi-web-access": "0.14.0"
+  },
+  "pi": {
+    "extensions": [
+      "./node_modules/@tintinweb/pi-subagents/src/index.ts",
+      "./node_modules/pi-web-access/index.ts",
+      "./node_modules/@juicesharp/rpiv-ask-user-question/index.ts",
+      "./node_modules/@juicesharp/rpiv-todo/index.ts"
+    ]
+  }
+}
