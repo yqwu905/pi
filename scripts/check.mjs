@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { readFile, stat } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
+import { readdir, readFile, stat } from "node:fs/promises";
+import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -26,14 +26,26 @@ for (const paths of Object.values(manifest.pi ?? {})) {
   }
 }
 
-const requiredSkills = ["grill-me", "grilling"];
-for (const skill of requiredSkills) {
-  const content = await readFile(join(repoRoot, "skills", skill, "SKILL.md"), "utf8");
-  if (!content.startsWith("---\n") || !content.includes(`\nname: ${skill}\n`) || !content.includes("\ndescription:")) {
-    throw new Error(`Invalid skill frontmatter: ${skill}`);
+const skillFiles = await findSkillFiles(join(repoRoot, "skills"));
+if (skillFiles.length === 0) throw new Error("No skills found");
+for (const path of skillFiles) {
+  const content = await readFile(path, "utf8");
+  const frontmatter = content.match(/^---\n([\s\S]*?)\n---(?:\n|$)/u)?.[1];
+  if (!frontmatter || !/^name: .+/mu.test(frontmatter) || !/^description: .+/mu.test(frontmatter)) {
+    throw new Error(`Invalid skill frontmatter: ${relative(repoRoot, path)}`);
   }
 }
 
 console.log(
-  `Validated ${Object.keys(manifest.dependencies ?? {}).length} dependencies, ${checkedResources} resources, and ${requiredSkills.length} skills.`,
+  `Validated ${Object.keys(manifest.dependencies ?? {}).length} dependencies, ${checkedResources} resources, and ${skillFiles.length} skills.`,
 );
+
+async function findSkillFiles(directory) {
+  const matches = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) matches.push(...(await findSkillFiles(path)));
+    if (entry.isFile() && entry.name === "SKILL.md") matches.push(path);
+  }
+  return matches;
+}

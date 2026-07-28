@@ -14,6 +14,6 @@ This package installs or redistributes the following third-party Pi resources. T
 
 ## Skills
 
-`grill-me` and `grilling` are copied from <https://github.com/mattpocock/skills> at commit `2ab958093e83e0ec752e6c1c5932da465bf23e0c`. The upstream repository is MIT licensed; see its [LICENSE](https://github.com/mattpocock/skills/blob/main/LICENSE).
+`grill-me` and `grilling` are copied from <https://github.com/mattpocock/skills> at commit `2ab958093e83e0ec752e6c1c5932da465bf23e0c`. The upstream repository is MIT licensed; the required notice is included at [`third-party/mattpocock-skills-LICENSE`](third-party/mattpocock-skills-LICENSE).
 
 Each dependency retains its own copyright and license terms. Installed extension license files can be found in the corresponding package directories under `node_modules/`.
