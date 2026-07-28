@@ -1,8 +1,8 @@
 {
   "name": "@yqwu905/pi",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Personal Pi extension bundle with pinned dependencies.",
+  "description": "Personal Pi extension and skill bundle with pinned dependencies.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -11,11 +11,17 @@
   "keywords": [
     "pi-package",
     "pi-coding-agent",
-    "pi-extension"
+    "pi-extension",
+    "agent-skills"
   ],
+  "scripts": {
+    "sync": "node ./scripts/sync-from-local.mjs",
+    "check": "node ./scripts/check.mjs"
+  },
   "dependencies": {
     "@juicesharp/rpiv-ask-user-question": "2.1.0",
     "@juicesharp/rpiv-todo": "2.1.0",
+    "@narumitw/pi-statusline": "0.36.0",
     "@tintinweb/pi-subagents": "0.14.3",
     "pi-web-access": "0.14.0"
   },
@@ -24,7 +30,11 @@
       "./node_modules/@tintinweb/pi-subagents/src/index.ts",
       "./node_modules/pi-web-access/index.ts",
       "./node_modules/@juicesharp/rpiv-ask-user-question/index.ts",
-      "./node_modules/@juicesharp/rpiv-todo/index.ts"
+      "./node_modules/@juicesharp/rpiv-todo/index.ts",
+      "./node_modules/@narumitw/pi-statusline/src/index.ts"
+    ],
+    "skills": [
+      "./skills"
     ]
   }
 }
