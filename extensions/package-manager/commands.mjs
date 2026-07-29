@@ -90,7 +90,7 @@ async function statusCommand(ctx, runtime, bundle) {
 }
 
 async function addCommand(ctx, runtime, bundle) {
-  assertManaged(runtime);
+  await assertWritableRuntime(runtime);
   const candidates = await discoverCandidates({
     root: runtime.root,
     agentDir: runtime.agentDir,
@@ -123,7 +123,7 @@ async function addCommand(ctx, runtime, bundle) {
 }
 
 async function removeCommand(ctx, runtime, bundle) {
-  assertManaged(runtime);
+  await assertWritableRuntime(runtime);
   const units = [
     ...bundle.packages.map((value) => ({ id: value.id, kind: "package", value, label: `${value.id} (${countResources(value.resources)} resources)` })),
     ...bundle.resources
@@ -164,7 +164,7 @@ async function reviewCommand(ctx, runtime, bundle) {
 }
 
 async function pullCommand(ctx, runtime, bundle) {
-  assertManaged(runtime);
+  await assertWritableRuntime(runtime);
   if (!(await ctx.ui.confirm("Pull package updates?", "Requires a clean main checkout and performs a fast-forward-only pull."))) return;
   await pullPackage({ root: runtime.root, bundle, run: runtime.run });
   notify(ctx, "Package updated. Reloading Pi…", "info");
@@ -172,7 +172,7 @@ async function pullCommand(ctx, runtime, bundle) {
 }
 
 async function publishCommand(ctx, runtime, bundle) {
-  assertManaged(runtime);
+  await assertWritableRuntime(runtime);
   const review = await reviewPackage({ root: runtime.root, bundle, run: runtime.run });
   if (!review.git.dirty) return notify(ctx, "There are no changes to publish.", "info");
   await ctx.ui.editor(
@@ -323,9 +323,13 @@ async function cleanupNewDirectInstalls(ctx, runtime, units) {
   }
 }
 
-function assertManaged(runtime) {
+async function assertWritableRuntime(runtime) {
   if (!runtime.managedInstall) {
     throw new Error("Write commands only work from Pi's managed rolling install. Install git:github.com/yqwu905/pi without a tag");
+  }
+  const git = await inspectGit(runtime.root, runtime.run, { fetch: false });
+  if (git.detached || git.branch !== "main") {
+    throw new Error("Write commands require an unpinned rolling install on branch main");
   }
 }
 
