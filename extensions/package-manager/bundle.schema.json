@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yqwu905/pi/blob/main/extensions/package-manager/bundle.schema.json",
+  "title": "YQ Pi bundle manifest",
+  "type": "object",
+  "required": ["schemaVersion", "package", "packages", "resources"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "package": {
+      "type": "object",
+      "required": ["name", "repository", "branch", "remote", "installSource"],
+      "properties": {
+        "name": { "type": "string" },
+        "repository": { "type": "string" },
+        "branch": { "type": "string" },
+        "remote": { "type": "string" },
+        "installSource": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "packages": { "type": "array", "items": { "type": "object" } },
+    "resources": { "type": "array", "items": { "type": "object" } }
+  },
+  "additionalProperties": false
+}

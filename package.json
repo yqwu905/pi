@@ -1,6 +1,6 @@
 {
   "name": "@yqwu905/pi",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "private": true,
   "description": "Personal Pi extension and skill bundle with pinned dependencies.",
   "license": "MIT",
@@ -15,8 +15,11 @@
     "agent-skills"
   ],
   "scripts": {
-    "sync": "node ./scripts/sync-from-local.mjs",
-    "check": "node ./scripts/check.mjs"
+    "check": "node ./scripts/check.mjs",
+    "test": "node --test tests/package-manager/*.test.mjs"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": ">=0.82.1 <0.83.0"
   },
   "dependencies": {
     "@juicesharp/rpiv-ask-user-question": "2.1.0",
@@ -27,14 +30,16 @@
   },
   "pi": {
     "extensions": [
-      "./node_modules/@tintinweb/pi-subagents/src/index.ts",
-      "./node_modules/pi-web-access/index.ts",
       "./node_modules/@juicesharp/rpiv-ask-user-question/index.ts",
       "./node_modules/@juicesharp/rpiv-todo/index.ts",
-      "./node_modules/@narumitw/pi-statusline/src/index.ts"
+      "./node_modules/@narumitw/pi-statusline/src/index.ts",
+      "./node_modules/@tintinweb/pi-subagents/src/index.ts",
+      "./node_modules/pi-web-access/index.ts",
+      "./extensions/package-manager/index.ts"
     ],
     "skills": [
-      "./skills"
+      "./skills/grill-me",
+      "./skills/grilling"
     ]
   }
 }

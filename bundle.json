@@ -1,0 +1,168 @@
+{
+  "$schema": "./extensions/package-manager/bundle.schema.json",
+  "schemaVersion": 1,
+  "package": {
+    "name": "@yqwu905/pi",
+    "repository": "https://github.com/yqwu905/pi.git",
+    "branch": "main",
+    "remote": "origin",
+    "installSource": "git:github.com/yqwu905/pi"
+  },
+  "packages": [
+    {
+      "id": "npm:@juicesharp/rpiv-ask-user-question",
+      "installSource": "npm:@juicesharp/rpiv-ask-user-question",
+      "source": {
+        "type": "npm",
+        "name": "@juicesharp/rpiv-ask-user-question",
+        "version": "2.1.0"
+      },
+      "dependency": {
+        "name": "@juicesharp/rpiv-ask-user-question",
+        "spec": "2.1.0"
+      },
+      "resolved": "2.1.0",
+      "resources": {
+        "extensions": [
+          "index.ts"
+        ],
+        "skills": [],
+        "prompts": [],
+        "themes": []
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "npm:@juicesharp/rpiv-todo",
+      "installSource": "npm:@juicesharp/rpiv-todo",
+      "source": {
+        "type": "npm",
+        "name": "@juicesharp/rpiv-todo",
+        "version": "2.1.0"
+      },
+      "dependency": {
+        "name": "@juicesharp/rpiv-todo",
+        "spec": "2.1.0"
+      },
+      "resolved": "2.1.0",
+      "resources": {
+        "extensions": [
+          "index.ts"
+        ],
+        "skills": [],
+        "prompts": [],
+        "themes": []
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "npm:@narumitw/pi-statusline",
+      "installSource": "npm:@narumitw/pi-statusline",
+      "source": {
+        "type": "npm",
+        "name": "@narumitw/pi-statusline",
+        "version": "0.36.0"
+      },
+      "dependency": {
+        "name": "@narumitw/pi-statusline",
+        "spec": "0.36.0"
+      },
+      "resolved": "0.36.0",
+      "resources": {
+        "extensions": [
+          "src/index.ts"
+        ],
+        "skills": [],
+        "prompts": [],
+        "themes": []
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "npm:@tintinweb/pi-subagents",
+      "installSource": "npm:@tintinweb/pi-subagents",
+      "source": {
+        "type": "npm",
+        "name": "@tintinweb/pi-subagents",
+        "version": "0.14.3"
+      },
+      "dependency": {
+        "name": "@tintinweb/pi-subagents",
+        "spec": "0.14.3"
+      },
+      "resolved": "0.14.3",
+      "resources": {
+        "extensions": [
+          "src/index.ts"
+        ],
+        "skills": [],
+        "prompts": [],
+        "themes": []
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "npm:pi-web-access",
+      "installSource": "npm:pi-web-access",
+      "source": {
+        "type": "npm",
+        "name": "pi-web-access",
+        "version": "0.14.0"
+      },
+      "dependency": {
+        "name": "pi-web-access",
+        "spec": "0.14.0"
+      },
+      "resolved": "0.14.0",
+      "resources": {
+        "extensions": [
+          "index.ts"
+        ],
+        "skills": [],
+        "prompts": [],
+        "themes": []
+      },
+      "license": "MIT"
+    }
+  ],
+  "resources": [
+    {
+      "id": "extension:package-manager",
+      "type": "extension",
+      "name": "package-manager",
+      "path": "extensions/package-manager/index.ts",
+      "contentRoot": "extensions/package-manager",
+      "source": {
+        "type": "builtin"
+      },
+      "protected": true,
+      "sha256": "19636aa329b6bf603be2ba548feaf480f10e9b603cb78b8fc9394824563f1216"
+    },
+    {
+      "id": "skill:grill-me",
+      "type": "skill",
+      "name": "grill-me",
+      "path": "skills/grill-me",
+      "source": {
+        "type": "git-vendor",
+        "repository": "https://github.com/mattpocock/skills.git",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "subpath": "skills/productivity/grill-me"
+      },
+      "sha256": "000514e9633b1a2df8bef98549e99b6eaf1a8c3fabfad0e3b328440b3b226c90"
+    },
+    {
+      "id": "skill:grilling",
+      "type": "skill",
+      "name": "grilling",
+      "path": "skills/grilling",
+      "source": {
+        "type": "git-vendor",
+        "repository": "https://github.com/mattpocock/skills.git",
+        "commit": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "subpath": "skills/productivity/grilling"
+      },
+      "sha256": "35963aa4abbdae92eb75d8c2dc69eaa70126315a642aba1e5371bd4a9305fb2a"
+    }
+  ]
+}

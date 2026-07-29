@@ -19,10 +19,11 @@ git fetch origin --tags
 git diff --check
 npm version "$version" --no-git-tag-version --allow-same-version
 npm install
+npm test
 npm run check
 npm audit --omit=dev --registry=https://registry.npmjs.org
 
-git add package.json package-lock.json README.md THIRD_PARTY_NOTICES.md skills scripts third-party
+git add -A -- .
 git diff --cached --check
 git commit -m "Release Pi bundle v$version"
 git tag -a "v$version" -m "v$version"
